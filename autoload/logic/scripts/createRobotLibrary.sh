@@ -1,8 +1,7 @@
 #!/bin/bash
-
+vim_home=~/.vim/
 #constants
-syntax_file="../../../syntax/libraryHighlight.vim"
-
+syntax_file=$(find $vim_home -name libraryHighlight.vim | head -n 1)
 #Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <python_file>"

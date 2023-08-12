@@ -6,6 +6,10 @@
 
 This project is based on the original [robotframework-vim](https://github.com/mfukar/robotframework-vim) plugin by Michael Foukarakis. We extend our gratitude for their contribution to the Vim community.
 
+
+- This is still under heavy development and currently will work only on Linux
+- Scripts have issue currently it will add multiple times keywords
+- vimrc need trigger to run check if there is new keywords
 ## Features
 
 - Improved syntax highlighting for Robot Framework files.

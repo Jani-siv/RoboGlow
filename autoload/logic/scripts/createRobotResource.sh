@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Constants
-syntax_file="../../../syntax/resourceHighlight.vim"
-# TODO add syntax_file check
+vim_home=~/.vim/
+#constants
+syntax_file=$(find $vim_home -name resourceHighlight.vim | head -n 1)
 # Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <robot_file>"
