@@ -2,7 +2,7 @@
 " this will process robot file LIBRARY and RESOURCE include files
 " and passing those for scripts in script folder
 
-function! ProcessRobotHighLighting(robot_file)
+function! ProcessKeywords(robot_file)
     :echom "Testing function autoload"
     call CheckAndProcessPythonFiles(a:robot_file)
     call CheckAndProcessRobotFiles(a:robot_file)

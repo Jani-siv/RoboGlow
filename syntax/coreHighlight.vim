@@ -1,4 +1,7 @@
 "Core syntax highlighting settings
+" Save and set 'cpo' option
+let s:cpo_save=&cpo
+set cpo&vim
 "
 "------------------------------------------------------------------------
 " Matches
@@ -66,4 +69,9 @@ hi def link robotKeywordSet         Keyword
 hi def link robotTestcaseSet        Keyword
 hi def link robotGherkin            Keyword
 hi def link builtInLibrary          Comment
+" Restore 'cpo' option
+let &cpo=s:cpo_save
+
+" Set current syntax
+let b:current_syntax = "robot"
 

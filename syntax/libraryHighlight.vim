@@ -32,6 +32,9 @@ hi def link xmlLibrary              Keyword
 hi def link seleniumLibrary         Keyword
 hi def link sshLibrary              Keyword
 
-let b:current_syntax = "robot"
+" Restore 'cpo' option
 let &cpo=s:cpo_save
+
+" Set current syntax
+let b:current_syntax = "robot"
 
