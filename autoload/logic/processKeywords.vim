@@ -2,13 +2,12 @@
 " this will process robot file LIBRARY and RESOURCE include files
 " and passing those for scripts in script folder
 
-function! logic#process#processKeywords#ProcessKeywords(robot_file)
-    :echom "Testing function autoload"
-    call logic#process#CheckAndProcessPythonFiles(a:robot_file)
-    call logic#process#CheckAndProcessRobotFiles(a:robot_file)
+function! logic#processKeywords#ProcessKeywords(robot_file)
+    call CheckAndProcessPythonFiles(a:robot_file)
+    call CheckAndProcessRobotFiles(a:robot_file)
 endfunction
 
-function! logic#process#processKeywords#CheckAndProcessPythonFiles(robot_file)
+function! CheckAndProcessPythonFiles(robot_file)
     " Get the path of the directory containing the robot file
     let robot_dir = fnamemodify(a:robot_file, ':h')
     let script_name = 'createRobotLibrary.sh'
@@ -40,7 +39,7 @@ endfunction
 
 " function to check and process included robot files
 
-function! logic#process#processKeywords#CheckAndProcessRobotFiles(robot_file)
+function! CheckAndProcessRobotFiles(robot_file)
     " Get the path of the directory containing the robot file
     let robot_dir = fnamemodify(a:robot_file, ':h')
     let script_name = 'createRobotResource.sh'
