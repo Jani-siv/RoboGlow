@@ -6,7 +6,6 @@
 
 This project is based on the original [robotframework-vim](https://github.com/mfukar/robotframework-vim) plugin by Michael Foukarakis. We extend our gratitude for their contribution to the Vim community.
 
-
 - This is still under heavy development and currently will work only on Linux
 - Scripts have issue currently it will add multiple times keywords
 - vimrc need trigger to run check if there is new keywords
@@ -18,7 +17,10 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - ...
 
 ## Getting Started
-
+- Use junegunn plug installer to install this
+- Add your vimrc file Plug 'Jani-siv/RoboGlow'
+- Add your vimrc line let g:RoboGlow = 0 "This option will disable feature what will add new library and resources to highlihter"
+- Open vim and write :PlugInstall
 ...
 
 ## Contributing
