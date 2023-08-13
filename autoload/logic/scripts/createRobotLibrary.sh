@@ -1,13 +1,26 @@
 #!/bin/bash
+# You can modify colors here more highlight settings :highlight
+included_lib_color="robotSettings"
+python_keywords_color="String"
+
+# Add new library keywords and library name to syntax file
+include_path="$(dirname "$0")"
+source $include_path/functions.sh
+#TODO Add syntax file path relatively to include_path
 vim_home=~/.vim/
 #constants
+RLIB='RoboGlow Library'
+RLIBLINK='RoboGlow Links'
+RPYLIB='RoboGlow Python Library'
+RPYLINK='RoboGlow Python Links'
+# Get syntax file
 syntax_file=$(find $vim_home -name libraryHighlight.vim | head -n 1)
 #Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <python_file>"
     exit 1
 fi
-
+# File where get all functions
 python_file="$1"
 
 # Check if the file exists
@@ -27,10 +40,11 @@ library_name="${file_name%.*}"
 # check if library is already in definition file
 cnt=$(grep -c $library_name $syntax_file)
 if [ $cnt -ne 0 ]; then
+    #TODO Future this need change that it will update if there is already same named library.
     exit 0
 fi
 
-# Get definitions from file
+# Get definitions from python file and exlude __init__ and main functions
 KEYWORDS=$(grep "def " $1 | grep -v -E "__init__|main" | sed -E 's/^\s*def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(.*/\1/')
 # Put all keyword to array
 IFS=$'\n' read -r -d '' -a keyword_array <<< "$KEYWORDS"
@@ -46,29 +60,15 @@ done
 # Edit end of LIBRARY
 END=')\>"'
 LIBRARY="${LIBRARY%|*}$END${LIBRARY##*|}"
+HIGHLIGHT="hi def link $library_name          $python_keywords_color"
 
 # Generate library name highlight as library
 LIB_NAME=$(echo -n "syn match PY_$library_name         $BEGIN$library_name\)\>.\"")
-LIB_NAME_HIGH="hi def link PY_$library_name          robotSettings"
+LIB_NAME_HIGH="hi def link PY_$library_name          $included_lib_color"
 
 # Write new library definition if not found
-sed -i "/RoboGlow Library/ a\\
-$(printf '%s\n' "$LIBRARY" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
-
-# Add highlighting to library keywords
-HIGHLIGHT="hi def link $library_name          String"
-sed -i "/RoboGlow Links/ a\\
-$(printf '%s\n' "$HIGHLIGHT" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
-
-#Add python files highlighting
-sed -i "/RoboGlow Python Library/ a\\
-$(printf '%s\n' "$LIB_NAME" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
-
-# Add highlighting to python library name
-sed -i "/RoboGlow Python Links/ a\\
-$(printf '%s\n' "$LIB_NAME_HIGH" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
+AddDataToFile "$syntax_file" "$LIBRARY" "$RLIB"
+AddDataToFile "$syntax_file" "$HIGHLIGHT" "$RLIBLINK"
+AddDataToFile "$syntax_file" "$LIB_NAME" "$RPYLIB"
+AddDataToFile "$syntax_file" "$LIB_NAME_HIGH" "$RPYLINK"
 
