@@ -23,6 +23,10 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Open vim and write :PlugInstall
 ...
 
+## Todo
+- Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
+- Opened file keywords need to be added to highlighting. Currently those keywords and testcases are not highlighted.
+
 ## Contributing
 
 ...
