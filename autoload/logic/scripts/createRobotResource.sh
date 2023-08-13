@@ -31,7 +31,8 @@ if [ $cnt -ne 0 ]; then
 #    echo "resource is already added"
     exit 0
 fi
-
+#TODO This need to be updated using code from 62
+#Future this only read after *** Keywords *** Line and Stop reading next ***
 Keywords=$(grep -E "^[A-Za-z]" $resource_file | grep -v -E "Resource|Library" | cut -d"$" -f1)
 
 IFS=$'\n' read -r -d '' -a keyword_array <<< "$Keywords"
@@ -57,4 +58,30 @@ HIGHLIGHT="hi def link $res_name          Todo"
 sed -i "/RoboGlow Links/ a\\
 $(printf '%s\n' "$HIGHLIGHT" | sed -e 's/[\/&]/\\&/g')
 " "$syntax_file"
+
+
+#TODO UPDATE VERSION FOR RESOURCE FILE
+# Define a flag to track whether we are in a section
+#in_section=0
+
+# Read the input file line by line
+#while IFS= read -r line; do
+    # Remove leading and trailing whitespace from the line
+    #trimmed_line=$(echo "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+    # Check if the line starts with "*** Keywords ***"
+    #if [[ $trimmed_line == "*** Keywords ***" || $trimmed_line == "#*** Keywords ***" ]]; then
+        #in_section=1
+        #echo "Found a Keywords section"
+    #elif [[ $in_section -eq 1 && $trimmed_line == "***"* ]]; then
+        #in_section=0
+        #echo "End of section"
+    #fi
+#
+    # Process lines within the section
+    #if [[ $in_section -eq 1 ]]; then
+        #echo "Processing line: $trimmed_line"
+        ## Add your processing logic here
+    #fi
+#done < "$1"
 
