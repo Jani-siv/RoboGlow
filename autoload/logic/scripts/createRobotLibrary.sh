@@ -35,7 +35,7 @@ KEYWORDS=$(grep "def " $1 | grep -v -E "__init__|main" | sed -E 's/^\s*def\s+([a
 # Put all keyword to array
 IFS=$'\n' read -r -d '' -a keyword_array <<< "$KEYWORDS"
 
-# Generate LIBRARY begin part
+# Generate Keywords from library
 LIBRARY=$(echo -n "syn match $library_name")
 BEGIN='"\c\<\('
 LIBRARY=$(echo -n "$LIBRARY     $BEGIN")
@@ -47,6 +47,10 @@ done
 END=')\>"'
 LIBRARY="${LIBRARY%|*}$END${LIBRARY##*|}"
 
+# Generate library name highlight as library
+LIB_NAME=$(echo -n "syn match PY_$library_name         $BEGIN$library_name\)\>.\"")
+LIB_NAME_HIGH="hi def link PY_$library_name          robotSettings"
+
 # Write new library definition if not found
 sed -i "/RoboGlow Library/ a\\
 $(printf '%s\n' "$LIBRARY" | sed -e 's/[\/&]/\\&/g')
@@ -56,5 +60,15 @@ $(printf '%s\n' "$LIBRARY" | sed -e 's/[\/&]/\\&/g')
 HIGHLIGHT="hi def link $library_name          String"
 sed -i "/RoboGlow Links/ a\\
 $(printf '%s\n' "$HIGHLIGHT" | sed -e 's/[\/&]/\\&/g')
+" "$syntax_file"
+
+#Add python files highlighting
+sed -i "/RoboGlow Python Library/ a\\
+$(printf '%s\n' "$LIB_NAME" | sed -e 's/[\/&]/\\&/g')
+" "$syntax_file"
+
+# Add highlighting to python library name
+sed -i "/RoboGlow Python Links/ a\\
+$(printf '%s\n' "$LIB_NAME_HIGH" | sed -e 's/[\/&]/\\&/g')
 " "$syntax_file"
 

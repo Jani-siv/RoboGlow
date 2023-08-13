@@ -4,6 +4,8 @@ let s:cpo_save=&cpo
 set cpo&vim
 
 " List of keywords
+" RoboGlow Python Library
+
 " RoboGlow Library
 
 " Other Library
@@ -22,6 +24,8 @@ syn match sshLibrary                "\c\<\(Write Until Expected Output\|Write Ba
 
 " Coloring keywords
 " RoboGlow Links
+
+"RoboGlow Python Links
 
 " Other Links
 hi def link collectionsLibrary      Keyword
