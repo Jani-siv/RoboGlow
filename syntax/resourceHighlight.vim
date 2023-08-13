@@ -4,9 +4,9 @@ let s:cpo_save=&cpo
 set cpo&vim
 
 
-" Resource
+" RoboGlow Resource
 
-" Links
+" RoboGlow Links
 
 
 let b:current_syntax = "robot"

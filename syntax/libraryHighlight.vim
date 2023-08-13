@@ -4,7 +4,9 @@ let s:cpo_save=&cpo
 set cpo&vim
 
 " List of keywords
-" Library
+" RoboGlow Library
+
+" Other Library
 syn match collectionsLibrary        "\c\<\(Sort List\|Should Not Contain Match\|Should Contain Match\|Set To Dictionary\|Set List Value\|Reverse List\|Remove Values From List\|Remove From List\|Remove From Dictionary\|Remove Duplicates\|Log List\|Log Dictionary\|Lists Should Be Equal\|List Should Not Contain Value\|List Should Not Contain Duplicates\|List Should Contain Value\|List Should Contain Sub List\|Keep In Dictionary\|Insert Into List\|Get Slice From List\|Get Matches\|Get Match Count\|Get Index From List\|Get From List\|Get From Dictionary\|Get Dictionary Values\|Get Dictionary Keys\|Get Dictionary Items\|Dictionary Should Not Contain Value\|Dictionary Should Not Contain Key\|Dictionary Should Contain Value\|Dictionary Should Contain Sub Dictionary\|Dictionary Should Contain Key\|Dictionary Should Contain Item\|Dictionaries Should Be Equal\|Create Dictionary\|Count Values In List\|Copy List\|Copy Dictionary\|Convert To List\|Combine Lists\|Append To List\)\>"
 syn match dateTimeLibrary           "\c\<\(Subtract Time From Time\|Subtract Time From Date\|Subtract Date From Date\|Get Current Date\|Convert Time\|Convert Date\|Add Time To Time\|Add Time To Date\)\>"
 syn match dialogLibrary             "\c\<\(Pause Execution\|Get Value From User\|Get Selection From User\|Execute Manual Step\)\>"
@@ -19,7 +21,9 @@ syn match seleniumLibrary           "\c\<\(Xpath Should Match X Times\|Wait Unti
 syn match sshLibrary                "\c\<\(Write Until Expected Output\|Write Bare\|Write\|Switch Connection\|Start Command\|Set Default Configuration\|Set Client Configuration\|Read Until Regexp\|Read Until Prompt\|Read Until\|Read Command Output\|Read\|Put File\|Put Directory\|Open Connection\|Login With Public Key\|Login\|List Files In Directory\|List Directory\|List Directories In Directory\|Get File\|Get Directory\|Get Connections\|Get Connection\|File Should Not Exist\|File Should Exist\|Execute Command\|Enable Ssh Logging\|Directory Should Not Exist\|Directory Should Exist\|Close Connection\|Close All Connections\)\>"
 
 " Coloring keywords
-" Links
+" RoboGlow Links
+
+" Other Links
 hi def link collectionsLibrary      Keyword
 hi def link dateTimeLibrary         Keyword
 hi def link dialogLibrary           Keyword

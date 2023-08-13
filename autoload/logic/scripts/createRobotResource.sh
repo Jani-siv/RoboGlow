@@ -48,13 +48,13 @@ END=')\>"'
 LIBRARY="${LIBRARY%|*}$END${LIBRARY##*|}"
 
 # Write new library definition if not found
-sed -i "/Resource/ a\\
+sed -i "/RoboGlow Resource/ a\\
 $(printf '%s\n' "$LIBRARY" | sed -e 's/[\/&]/\\&/g')
 " "$syntax_file"
 
 # Add highlighting to library keywords
 HIGHLIGHT="hi def link $res_name          Todo"
-sed -i "/Links/ a\\
+sed -i "/RoboGlow Links/ a\\
 $(printf '%s\n' "$HIGHLIGHT" | sed -e 's/[\/&]/\\&/g')
 " "$syntax_file"
 
