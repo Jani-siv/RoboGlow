@@ -26,6 +26,12 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 ## Todo
 - Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
 - Opened file keywords need to be added to highlighting. Currently those keywords and testcases are not highlighted.
+- Library filenames without file extensions not included to keyword list
+- Library ../../pylib.something.py is not parsed correctly
+
+## Updates
+- Refactored one shell script to use functions
+- Added to shell script possibility to change syntax by user
 
 ## Contributing
 
