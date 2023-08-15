@@ -41,7 +41,7 @@ Keywords=$(grep -E "^[A-Za-z]" $resource_file | grep -v -E "Resource|Library" | 
 IFS=$'\n' read -r -d '' -a keyword_array <<< "$Keywords"
 
 LIBRARY=$(echo -n "syn match $res_name")
-BEGIN='"\c\<\('
+BEGIN='"\<\('
 LIBRARY=$(echo -n "$LIBRARY     $BEGIN")
 
 for func in "${keyword_array[@]}"; do
