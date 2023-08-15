@@ -26,17 +26,20 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 ## Todo / nice to have
 - Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
 - Opened file keywords need to be added to highlighting. Currently those keywords and testcases are not highlighted.
-- Update add functions to use relative path for syntax files (current use has implemented using find and it's slow)
+- Update createRobotKeywords.sh only read section where keywords are.
 
 ## Known bugs
-- From python parsing need take commented function definiton out
-- Library filenames without file extensions not included to keyword list
-- Library ../../pylib.something.py is not parsed correctly
 - Keywords syntax will ignore case sensitivy. This need to be fixed
+- Python includes what have .py file extensions and used dot as directory separator will not be parsed
 
 ## Updates
 - Refactored one shell script to use functions
 - Added to shell script possibility to change syntax by user
+- Changed syntax file search to relative path of running script
+- Bug fix: From python parsing need take commented function definiton out
+- Bug fix: Library filenames without file extensions not included to keyword list
+- Bug fix: Library ../../pylib.something.py is not parsed correctly
+- Update add functions to use relative path for syntax files (current use has implemented using find and it's slow)
 
 ## Contributing
 

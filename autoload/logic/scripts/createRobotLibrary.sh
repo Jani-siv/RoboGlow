@@ -14,7 +14,7 @@ RLIBLINK='RoboGlow Links'
 RPYLIB='RoboGlow Python Library'
 RPYLINK='RoboGlow Python Links'
 # Get syntax file
-syntax_file=$(find $vim_home -name libraryHighlight.vim | head -n 1)
+syntax_file=$include_path/../../../syntax/libraryHighlight.vim
 #Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <python_file>"
@@ -45,7 +45,7 @@ if [ $cnt -ne 0 ]; then
 fi
 
 # Get definitions from python file and exlude __init__ and main functions
-KEYWORDS=$(grep "def " $1 | grep -v -E "__init__|main" | sed -E 's/^\s*def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(.*/\1/')
+KEYWORDS=$(grep "^[[:space:]]*[^[:space:]#]*def " $1 | grep -v -E "__init__|main" | sed -E 's/^\s*def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(.*/\1/')
 # Put all keyword to array
 IFS=$'\n' read -r -d '' -a keyword_array <<< "$KEYWORDS"
 
