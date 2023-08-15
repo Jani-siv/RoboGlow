@@ -1,9 +1,13 @@
 #!/bin/bash
+# You can modify colors here more highlight settings :highlight
+included_resource_color="Todo"
 
+# Add new library keywords and library name to syntax file
+include_path="$(dirname "$0")"
+source $include_path/functions.sh
 # Constants
-vim_home=~/.vim/
-#constants
-syntax_file=$(find $vim_home -name resourceHighlight.vim | head -n 1)
+syntax_file=$include_path/../../../syntax/resourceHighlight.vim
+
 # Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <robot_file>"
@@ -47,14 +51,10 @@ done
 END=')\>"'
 LIBRARY="${LIBRARY%|*}$END${LIBRARY##*|}"
 
-# Write new library definition if not found
-sed -i "/RoboGlow Resource/ a\\
-$(printf '%s\n' "$LIBRARY" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
+R_RES='RoboGlow Resource'
+R_LINK='RoboGlow Links'
+HIGHLIGHT="hi def link $res_name          $included_resource_color"
 
-# Add highlighting to library keywords
-HIGHLIGHT="hi def link $res_name          Todo"
-sed -i "/RoboGlow Links/ a\\
-$(printf '%s\n' "$HIGHLIGHT" | sed -e 's/[\/&]/\\&/g')
-" "$syntax_file"
+AddDataToFile "$syntax_file" "$LIBRARY" "$R_RES"
+AddDataToFile "$syntax_file" "$HIGHLIGHT" "$R_LINK"
 

@@ -3,8 +3,8 @@
 " and passing those for scripts in script folder
 
 function! logic#processKeywords#ProcessKeywords(robot_file)
-    call CheckAndProcessPythonFiles(a:robot_file)
     call CheckAndProcessRobotFiles(a:robot_file)
+    call CheckAndProcessPythonFiles(a:robot_file)
 endfunction
 
 function! CheckAndProcessPythonFiles(robot_file)
@@ -20,9 +20,25 @@ function! CheckAndProcessPythonFiles(robot_file)
     for line in lines
         if line =~# '^Library.*py$'
             " Extract included Python files from the settings
+            " This need also check if directory is marked as dot and not /
             let parts = split(line, '\s\+')
             let end_part = parts[-1]
             call add(python_files, end_part)
+        elseif line =~# '^Library'
+            " Remove Library from line
+            let parts = split(line, '\s\+')
+            let end_part = parts[-1]
+            " Change . to / after last /
+            if end_part =~# '/'
+                " if between directory and file is dot change that to /
+                let modified_file = substitute(end_part, '\(.*\)\/\([^\/]*\)$', '\1\/\2', '/')
+            else
+                " if path value do not have any / change all . to /
+                let modified_file = substitute(end_part, '\.', '/', '')
+            endif
+            " Add file extensions
+            let modified_file_with_py = modified_file . '.py'
+            call add(python_files, modified_file_with_py)
         endif
     endfor
     " Run your custom script with the list of Python files
