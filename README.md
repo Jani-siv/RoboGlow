@@ -29,7 +29,6 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Update createRobotKeywords.sh only read section where keywords are.
 
 ## Known bugs
-- Keywords syntax will ignore case sensitivy. This need to be fixed
 - Python includes what have .py file extensions and used dot as directory separator will not be parsed
 
 ## Updates
@@ -40,6 +39,7 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Bug fix: Library filenames without file extensions not included to keyword list
 - Bug fix: Library ../../pylib.something.py is not parsed correctly
 - Update add functions to use relative path for syntax files (current use has implemented using find and it's slow)
+- Keywords syntax will ignore case sensitivy. This need to be fixed
 
 ## Contributing
 
