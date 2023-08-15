@@ -23,9 +23,13 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Open vim and write :PlugInstall
 ...
 
-## Todo
+## Todo / nice to have
 - Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
 - Opened file keywords need to be added to highlighting. Currently those keywords and testcases are not highlighted.
+- Update add functions to use relative path for syntax files (current use has implemented using find and it's slow)
+
+## Known bugs
+- From python parsing need take commented function definiton out
 - Library filenames without file extensions not included to keyword list
 - Library ../../pylib.something.py is not parsed correctly
 - Keywords syntax will ignore case sensitivy. This need to be fixed
