@@ -51,7 +51,7 @@ IFS=$'\n' read -r -d '' -a keyword_array <<< "$KEYWORDS"
 
 # Generate Keywords from library
 LIBRARY=$(echo -n "syn match $library_name")
-BEGIN='"\c\<\('
+BEGIN='"\<\('
 LIBRARY=$(echo -n "$LIBRARY     $BEGIN")
 
 for func in "${keyword_array[@]}"; do
