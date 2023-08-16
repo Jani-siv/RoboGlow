@@ -23,12 +23,6 @@ fi
 # File where get all functions
 python_file="$1"
 
-# Check if the file exists
-if [ ! -f "$python_file" ]; then
-    echo "File not found: $python_file"
-    exit 1
-fi
-
 # Create library name
 
 # Extract the file name from the path
@@ -36,6 +30,18 @@ file_name="${python_file##*/}"
 
 # Remove the file extension (everything after the last dot)
 library_name="${file_name%.*}"
+#Check if library is build in and return if it is
+isBuildInLib=$(CheckBuildInLib $library_name)
+if [ "$isBuildInLib" == "1" ]; then
+    echo "Answer is 1"
+    exit 0
+fi
+echo "Answer expected to be 0 == $isBuildInLib"
+# Check if the file exists
+if [ ! -f "$python_file" ]; then
+    echo "File not found: $python_file"
+    exit 1
+fi
 
 # check if library is already in definition file
 cnt=$(grep -c $library_name $syntax_file)
