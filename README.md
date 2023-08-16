@@ -25,7 +25,6 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 
 ## Todo / nice to have
 - Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
-- Opened file keywords need to be added to highlighting. Currently those keywords and testcases are not highlighted.
 
 ## Known bugs
 - Python includes what have .py file extensions and used dot as directory separator will not be parsed
@@ -41,6 +40,7 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Keywords syntax will ignore case sensitivy. This need to be fixed
 - Bug fix: Build-in library includes giving error.
 - Update createRobotKeywords.sh only read section where keywords are.
+- Opened file keywords will now be processed and added to keyword list
 
 ## Contributing
 
