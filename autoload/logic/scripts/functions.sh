@@ -12,3 +12,19 @@ AddDataToFile () {
 UpdateDataToFile () {
 echo "will be updated soonish"
 }
+
+CheckBuildInLib () {
+    local buildInLib=("BuildIn" "Collections" "DateTime" \
+        "Dialogs" "OperatingSystem" "Process" "Remote" \
+        "Screenshot" "String" "Telnet" "XML")
+    local VarToCheck=$1
+    local found="0"
+    for val in "${buildInLib[@]}"; do
+        if [ "$VarToCheck" == "$val" ]; then
+            found=$(echo "1")
+            break
+        fi
+    done
+    echo $found
+}
+

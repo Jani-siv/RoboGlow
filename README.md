@@ -30,7 +30,6 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 
 ## Known bugs
 - Python includes what have .py file extensions and used dot as directory separator will not be parsed
-- Build-in library includes giving error. These need handle differently.
 
 ## Updates
 - Refactored one shell script to use functions
@@ -41,6 +40,7 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Bug fix: Library ../../pylib.something.py is not parsed correctly
 - Update add functions to use relative path for syntax files (current use has implemented using find and it's slow)
 - Keywords syntax will ignore case sensitivy. This need to be fixed
+- Bug fix: Build-in library includes giving error.
 
 ## Contributing
 
