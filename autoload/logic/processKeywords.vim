@@ -79,6 +79,9 @@ function! CheckAndProcessRobotFiles(robot_file)
         if !empty(script_path)
             let cmd = printf('%s %s',script_path, python_file_path)
             execute '!'.cmd
+            " Run resource check also for opened file
+            let cmdCurrFile = printf('%s %s',script_path, a:robot_file)
+            execute '!'.cmdCurrFile
         else
             echo "Script not found"
         endif
