@@ -7,7 +7,7 @@ include_path="$(dirname "$0")"
 source $include_path/functions.sh
 # Constants
 syntax_file=$include_path/../../../syntax/resourceHighlight.vim
-
+keyword_array=()
 # Sanity check
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <robot_file>"
@@ -35,10 +35,32 @@ if [ $cnt -ne 0 ]; then
 #    echo "resource is already added"
     exit 0
 fi
+# look key words only from *** Keywords *** to *** or EOF
+in_section=0
+# Read the input file line by line
+while IFS= read -r line; do
+    # Remove leading and trailing whitespace from the line
+    trimmed_line=$(echo "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
-Keywords=$(grep -E "^[A-Za-z]" $resource_file | grep -v -E "Resource|Library" | cut -d"$" -f1)
+    # Check if the line starts with "*** Keywords ***"
+    check_start=$(echo $trimmed_line | grep -c "*** Keywords ***")
+    check_end=$(echo $trimmed_line | grep -c "***")
+    if [[ $in_section -eq "1" && $check_end -eq "0" ]]; then
+        in_section=0
 
-IFS=$'\n' read -r -d '' -a keyword_array <<< "$Keywords"
+    elif [[ $check_start -eq "1" ]]; then
+        in_section=1
+    fi
+
+    # Process lines within the section
+    if [[ $in_section -eq 1 ]]; then
+        isKeyword=$(echo "$line" | grep -E "^[A-Za-z]" | grep -v " Keywords ")
+        if [[ $isKeyword != "" ]]; then
+            add_word=$(echo "$isKeyword" |  grep -E "^[A-Za-z]")
+            keyword_array+=("$add_word")
+        fi
+    fi
+done < "$resource_file"
 
 LIBRARY=$(echo -n "syn match $res_name")
 BEGIN='"\<\('
