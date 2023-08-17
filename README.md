@@ -41,6 +41,7 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 - Bug fix: Build-in library includes giving error.
 - Update createRobotKeywords.sh only read section where keywords are.
 - Opened file keywords will now be processed and added to keyword list
+- Bug fix: if resource file did not contain any keywords parsing failed. Now exiting if there is nothing to parse
 
 ## Contributing
 
