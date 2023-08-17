@@ -25,6 +25,8 @@ This project is based on the original [robotframework-vim](https://github.com/mf
 
 ## Todo / nice to have
 - Update view after apply new library. Currently file need close and open again to get added resources and library keywords highlighted
+- Use case keywords one keyword and one keyword long will highlight depend order of defining keyword. \
+  for example: *one keyword* long
 
 ## Known bugs
 - Python includes what have .py file extensions and used dot as directory separator will not be parsed
