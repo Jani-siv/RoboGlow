@@ -35,6 +35,11 @@ if [ $cnt -ne 0 ]; then
 #    echo "resource is already added"
     exit 0
 fi
+#Check does file contain any keyword
+isKey=$(grep -c "*** Keywords ***" $resource_file)
+if [ $isKey -eq "0" ]; then
+    exit 0
+fi
 # look key words only from *** Keywords *** to *** or EOF
 in_section=0
 # Read the input file line by line
